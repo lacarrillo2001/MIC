@@ -1,0 +1,11 @@
+import { request } from './client.js';
+const base = '/backend/sesiones';
+export const createSession = (body) => request(base + '/sesiones', { method: 'POST', body });
+export const getSession = (id) => request(base + `/sesiones/${id}`);
+export const linkCode = (id) => request(base + `/sesiones/${id}/vinculacion`, { method: 'POST' });
+export const interrupt = (id) => request(base + `/sesiones/${id}/estado`, { method: 'POST', body: { estado: 'interrumpida' } });
+export const event = (id, body) => request(base + `/sesiones/${id}/eventos`, { method: 'POST', body });
+export const questionnaire = () => request(base + '/encuestas/configuracion');
+export const survey = (id, body) => request(base + `/sesiones/${id}/encuesta`, { method: 'POST', body });
+export const songAudio = (audioId, sessionId) => request(base + `/audios/${audioId}/contenido?sesion_id=${encodeURIComponent(sessionId)}`, { blob: true });
+export const toneAudio = (audioId, evaluationId) => request(base + `/audios/${audioId}/contenido?evaluacion_id=${encodeURIComponent(evaluationId)}`, { blob: true });

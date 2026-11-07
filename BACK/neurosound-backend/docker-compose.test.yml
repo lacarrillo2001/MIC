@@ -1,0 +1,12 @@
+# Solo junto a docker-compose.yml y con proyecto neurosound-verificacion.
+# Volumen y red distintos al entorno de desarrollo.
+services:
+  usuarios:
+    ports: !override ["127.0.0.1:18001:8000"]
+  recomendacion:
+    ports: !override ["127.0.0.1:18002:8000"]
+    environment:
+      CATALOGUE_AUTO_IMPORT: "false"
+  sesiones:
+    ports: !override ["127.0.0.1:18003:8000"]
+    volumes: !override ["./tests/runtime-media:/media:ro"]

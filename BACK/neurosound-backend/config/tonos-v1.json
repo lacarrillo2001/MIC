@@ -1,0 +1,12 @@
+{
+  "version": "tonos-v1-borrador",
+  "aprobado": false,
+  "escala": {"min": 1, "max": 5, "agrado": {"1": "Nada agradable", "5": "Muy agradable"}, "molestia": {"1": "Nada molesto", "5": "Muy molesto"}},
+  "instrucciones": "Configuración provisional. Detener u omitir ante incomodidad. No es prueba clínica.",
+  "tonos": [
+    {"tono_id": "tono_110", "frecuencia_hz": 110, "categoria_experimental": "Graves", "duracion_ms": null},
+    {"tono_id": "tono_417", "frecuencia_hz": 417, "categoria_experimental": "Medios", "duracion_ms": null},
+    {"tono_id": "tono_963", "frecuencia_hz": 963, "categoria_experimental": "Agudos", "duracion_ms": null}
+  ],
+  "note": "Etiquetas heurísticas heredadas, NO límites acústicos medidos. Requiere revisión, duración y audios registrados antes de aprobar."
+}

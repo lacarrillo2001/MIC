@@ -1,0 +1,30 @@
+{
+  "equivalencias": {
+    "ambiental": "ambient", "musica ambiental": "ambient", "ambiente": "ambient",
+    "clasica": "classical", "musica clasica": "classical", "classica": "classical",
+    "electronica": "electronica", "musica electronica": "electronica", "electronic": "electronica",
+    "pop latino": "latin pop", "pop en espanol": "spanish pop", "pop espanol": "spanish pop",
+    "latina": "latin", "musica latina": "latin",
+    "meditacion": "meditation", "musica de meditacion": "meditation",
+    "ruido blanco": "white noise",
+    "banda sonora": "soundtrack", "bandas sonoras": "soundtrack",
+    "musica de fondo": "background music", "musica para dormir": "sleep",
+    "nueva era": "new age", "hiphop": "hip hop", "hip hop": "hip hop",
+    "lofi": "lo-fi", "lo fi": "lo-fi", "regueton": "reggaeton", "reggaeton": "reggaeton",
+    "r & b": "r&b", "ryb": "r&b", "bosa nova": "bossa nova",
+    "rock alternativo": "alternative rock", "rock clasico": "classic rock",
+    "jazz suave": "smooth jazz", "jazz latino": "latin jazz",
+    "jazz de fondo": "background jazz", "piano de fondo": "background piano",
+    "guitarra clasica": "classical guitar", "piano clasico": "classical piano"
+  },
+  "etiquetas_es": {
+    "ambient": "Ambiental", "classical": "Clásica", "electronica": "Electrónica",
+    "latin pop": "Pop latino", "spanish pop": "Pop en español", "latin": "Latina",
+    "meditation": "Meditación", "white noise": "Ruido blanco",
+    "soundtrack": "Bandas sonoras", "background music": "Música de fondo", "sleep": "Música para dormir",
+    "new age": "Nueva era", "lo-fi": "Lo-fi", "hip hop": "Hip hop", "reggaeton": "Reguetón",
+    "alternative rock": "Rock alternativo", "classic rock": "Rock clásico",
+    "smooth jazz": "Jazz suave", "latin jazz": "Jazz latino", "background jazz": "Jazz de fondo",
+    "background piano": "Piano de fondo", "classical guitar": "Guitarra clásica", "classical piano": "Piano clásico"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "studyroom-integrado", "version": "1.0.0", "private": true,
+  "type": "module", "workspaces": ["web", "bridge"],
+  "scripts": {"setup": "node scripts/setup.mjs", "dev": "npm run dev --workspace web", "bridge": "npm start --workspace bridge", "build": "npm run build --workspace web", "test": "node --test tests/*.test.mjs"},
+  "engines": {"node": ">=22"}
+}

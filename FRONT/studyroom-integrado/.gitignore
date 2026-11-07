@@ -1,0 +1,10 @@
+node_modules/
+web/dist/
+.env
+bridge/runtime-state.json
+unreal/room-key.local.txt
+unreal/Binaries/
+unreal/Intermediate/
+unreal/Saved/
+unreal/DerivedDataCache/
+*.log

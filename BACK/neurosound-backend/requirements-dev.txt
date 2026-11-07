@@ -1,0 +1,4 @@
+-r requirements.txt
+pytest==9.2.0
+mongomock==4.3.0
+PyYAML==6.0.3

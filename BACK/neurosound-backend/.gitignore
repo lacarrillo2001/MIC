@@ -1,0 +1,10 @@
+.env
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+tests/runtime-media/
+media/*
+!media/.gitkeep
+imports/*
+!imports/.gitkeep

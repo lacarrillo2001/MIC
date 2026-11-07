@@ -1,0 +1,12 @@
+{
+  "version": "reglas-v1-experimental",
+  "weights": {"energy": 15, "valence": 15, "tempo": 0.2, "danceability": 10, "acousticness": 10, "instrumentalness": 5},
+  "bonuses": {"artist": 60, "genre": 40, "extra_genre": 5, "both": 20},
+  "tempo_targets": {"lento": 60, "moderado": 95, "rapido": 140},
+  "frequency_penalty": 300,
+  "discomfort_threshold": 3,
+  "learning_rate": 0.1,
+  "candidate_limit": 1000,
+  "result_limit": 15,
+  "note": "Reglas heredadas adaptadas. No validadas para mejorar atención. Sin objetivos emocionales prefijados."
+}

@@ -1,0 +1,10 @@
+import { request } from './client.js';
+const base = '/backend/usuarios';
+export const login = (body) => request(base + '/auth/login', { method: 'POST', body, authenticated: false });
+export const register = (body) => request(base + '/auth/registro', { method: 'POST', body, authenticated: false });
+export const me = () => request(base + '/usuarios/me');
+export const getProfile = () => request(base + '/perfiles/me');
+export const saveProfile = (body) => request(base + '/perfiles/me', { method: 'PUT', body });
+export const toneConfig = () => request(base + '/tonos/configuracion');
+export const startTones = () => request(base + '/evaluaciones-tonos', { method: 'POST' });
+export const finishTones = (id, body) => request(base + `/evaluaciones-tonos/${id}`, { method: 'PUT', body });

@@ -1,0 +1,4 @@
+{
+  "personalizada": {"heuristica_frecuencial_activa": false, "evaluacion_obligatoria": false},
+  "personalizada_heuristica": {"heuristica_frecuencial_activa": true, "evaluacion_obligatoria": true}
+}

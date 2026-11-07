@@ -1,0 +1,12 @@
+import { randomBytes } from 'node:crypto';
+import fs from 'node:fs';
+import { fileURLToPath } from 'node:url';
+const root = fileURLToPath(new URL('../', import.meta.url));
+const env = root + '.env';
+const room = root + 'unreal/room-key.local.txt';
+if (fs.existsSync(env) || fs.existsSync(room)) throw new Error('Configuración existente: no se sobrescribió. Conservar ambos archivos juntos.');
+const key = randomBytes(32).toString('hex');
+const template = fs.readFileSync(root + '.env.example', 'utf8').replace('GENERAR_CON_NPM_RUN_SETUP', key);
+fs.writeFileSync(env, template, { flag: 'wx', mode: 0o600 });
+fs.writeFileSync(room, key, { flag: 'wx', mode: 0o600 });
+console.log('Modo integrado configurado. Clave compartida guardada localmente, no se muestra ni se envía al navegador.');

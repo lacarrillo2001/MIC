@@ -1,0 +1,12 @@
+{
+  "version": "cuestionario-v1-borrador",
+  "aprobado": false,
+  "instrumento_validado": false,
+  "descripcion": "Ejemplo técnico para probar integración. No utilizar como instrumento validado de tesis.",
+  "preguntas": [
+    {"pregunta_id": "atencion_1", "dimension": "atencion_percibida", "texto": "¿Qué tan concentrado te sentiste durante la actividad?", "min": 1, "max": 5},
+    {"pregunta_id": "agrado_1", "dimension": "agrado", "texto": "¿Qué tanto te agradó la música?", "min": 1, "max": 5},
+    {"pregunta_id": "comodidad_1", "dimension": "comodidad", "texto": "¿Qué tan cómodo te resultó el sonido?", "min": 1, "max": 5},
+    {"pregunta_id": "esfuerzo_1", "dimension": "esfuerzo", "texto": "¿Cuánto esfuerzo mental te exigió la actividad?", "min": 1, "max": 5}
+  ]
+}

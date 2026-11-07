@@ -1,0 +1,9 @@
+{
+  "version": "encuesta-web-v4",
+  "voice_prefilter": {"instrumental_min": 0.8, "vocal_max": 0.2},
+  "weights": {"gustos": 0.40, "voz": 0.25, "tempo": 0.20, "energy": 0.15},
+  "tempo_ranges": {"lento": [40, 90], "moderado": [90, 120], "rapido": [120, 220]},
+  "tempo_falloff_bpm": 60,
+  "energy_targets": {"suave": 0.25, "energica": 0.75},
+  "nota": "Reglas experimentales configurables; no umbrales clínicos ni óptimos demostrados por la literatura."
+}

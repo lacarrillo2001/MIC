@@ -1,0 +1,90 @@
+name: neurosound
+x-api: &api
+  restart: unless-stopped
+  init: true
+  depends_on:
+    mongo:
+      condition: service_healthy
+  networks: [ backend ]
+  environment: &environment
+    MONGO_HOST: mongo
+    MONGO_DATABASE: neurosound
+    JWT_SECRET: ${JWT_SECRET:?Ejecutar python scripts/setup_env.py}
+    USUARIOS_SERVICE_KEY: ${USUARIOS_SERVICE_KEY:?Falta clave}
+    RECOMENDACION_SERVICE_KEY: ${RECOMENDACION_SERVICE_KEY:?Falta clave}
+    SESIONES_SERVICE_KEY: ${SESIONES_SERVICE_KEY:?Falta clave}
+    USUARIOS_URL: http://usuarios:8000
+    RECOMENDACION_URL: http://recomendacion:8000
+    SESIONES_URL: http://sesiones:8000
+    CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000,http://localhost:5173}
+    MEDIA_ROOT: /media
+  healthcheck:
+    test: [ CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://localhost:8000/health/ready',timeout=3)" ]
+    interval: 15s
+    timeout: 5s
+    start_period: 20s
+    retries: 4
+services:
+  mongo:
+    image: mongo:8.0
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD:?Falta clave}
+      USUARIOS_DB_PASSWORD: ${USUARIOS_DB_PASSWORD:?Falta clave}
+      RECOMENDACION_DB_PASSWORD: ${RECOMENDACION_DB_PASSWORD:?Falta clave}
+      SESIONES_DB_PASSWORD: ${SESIONES_DB_PASSWORD:?Falta clave}
+    volumes:
+      - mongo_data:/data/db
+      - ./mongo/init.js:/docker-entrypoint-initdb.d/01-users.js:ro
+      - ./imports:/imports:ro
+    networks: [ backend ]
+    healthcheck:
+      test: [ CMD-SHELL, 'mongosh --quiet --host localhost -u root -p "$$MONGO_INITDB_ROOT_PASSWORD" --authenticationDatabase admin --eval "db.adminCommand({ping:1}).ok" >/dev/null' ]
+      interval: 5s
+      timeout: 5s
+      start_period: 20s
+      retries: 20
+    ports: [ "127.0.0.1:27018:27017" ]
+  usuarios:
+    <<: *api
+    build: { context: ., dockerfile: usuarios/Dockerfile }
+    ports: [ "127.0.0.1:8001:8000" ]
+    environment:
+      <<: *environment
+      MONGO_USER: usuarios
+      MONGO_PASSWORD: ${USUARIOS_DB_PASSWORD:?Falta clave}
+  recomendacion:
+    <<: *api
+    build: { context: ., dockerfile: recomendacion/Dockerfile }
+    ports: [ "127.0.0.1:8002:8000" ]
+    environment:
+      <<: *environment
+      MONGO_USER: recomendacion
+      MONGO_PASSWORD: ${RECOMENDACION_DB_PASSWORD:?Falta clave}
+      CATALOGUE_AUTO_IMPORT: "true"
+      CATALOGUE_ARTISTS_FILE: /imports/artists.json
+      CATALOGUE_SONGS_FILE: /imports/songsV2.json
+      YOUTUBE_API_KEY: ${YOUTUBE_API_KEY:-}
+      YOUTUBE_REGION: ${YOUTUBE_REGION:-EC}
+      YOUTUBE_MAX_SEARCHES_PER_DAY: ${YOUTUBE_MAX_SEARCHES_PER_DAY:-50}
+    volumes: [ "./imports:/imports:ro" ]
+    healthcheck:
+      test: [ CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://localhost:8000/health/ready',timeout=3)" ]
+      interval: 10s
+      timeout: 5s
+      start_period: 10m
+      retries: 6
+  sesiones:
+    <<: *api
+    build: { context: ., dockerfile: sesiones/Dockerfile }
+    ports: [ "127.0.0.1:8003:8000" ]
+    environment:
+      <<: *environment
+      MONGO_USER: sesiones
+      MONGO_PASSWORD: ${SESIONES_DB_PASSWORD:?Falta clave}
+    volumes: [ "./media:/media" ]
+volumes:
+  mongo_data:
+networks:
+  backend:
